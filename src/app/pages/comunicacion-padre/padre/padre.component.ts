@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./padre.component.scss'],
 })
 export class PadreComponent implements OnInit {
+  public progreso1: number = 25;
+  public progreso2: number = 75;
+  
   constructor() {}
 
   ngOnInit(): void {}
-
-  public progreso1: number = 25;
-  public progreso2: number = 75;
 
   get getProgreso1(): string {
     return `${this.progreso1}%`;

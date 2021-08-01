@@ -8,17 +8,23 @@ import {
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class UserInterceptor implements HttpInterceptor {
+export class TypicodeInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log('Probando ejecución de interceptor');
+    console.log('PROBANDO EJECUCIÓN DE INTERCEPTOR');
+
     request = request.clone({
-      setHeaders: { Authorization: 'Este es el token de autorización' },
+      setHeaders: {
+        SeguridadToken: 'Aquí va el token dinámico',
+        SeguridadCustom1: 'Aquí va mi valor 1',
+        SeguridadCustom2: 'Aquí va mi valor 2',
+      },
     });
+
     return next.handle(request);
   }
 }

@@ -1,4 +1,3 @@
-//import { Component, OnInit } from '@angular/core';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
@@ -7,17 +6,17 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
   styleUrls: ['./hijo.component.scss'],
 })
 export class HijoComponent implements OnInit {
+  @Input('valorDesdePadre') public progreso: number = 40;
+  @Input() public btnClass: string = 'btn-primary';
+
+  @Output('valorDesdeHijo') public valorSalida: EventEmitter<number> =
+    new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {
     this.btnClass = `btn ${this.btnClass}`;
   }
-
-  @Input('valorDesdePadre') public progreso: number = 40;
-  @Input() public btnClass: string = 'btn-primary';
-
-  @Output('valorDesdeHijo') valorSalida: EventEmitter<number> =
-    new EventEmitter();
 
   public cambiarValor(valor: number): number {
     if (this.progreso >= 100 && valor >= 0) {

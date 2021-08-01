@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserService } from './user.service';
+import { TypicodeService } from './typicode.service';
 
-describe('UserService', () => {
-  let service: UserService;
+describe('TypicodeService', () => {
+  let service: TypicodeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserService);
+    service = TestBed.inject(TypicodeService);
   });
 
   it('should be created', () => {

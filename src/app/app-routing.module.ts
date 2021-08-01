@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ComunicacionPadreRoutingModule } from './comunicacion-padre/comunicacion-padre-routing.module'; //
-import { GitHubUserRoutingModule } from './git-hub-user/git-hub-user-routing.module'; //
-import { NopagefoundComponent } from './components/nopagefound/nopagefound.component';
-
-//const routes: Routes = [];
+import { ComunicacionPadreRoutingModule } from './pages/comunicacion-padre/comunicacion-padre-routing.module'; //
+import { TypicodeRoutingModule } from './pages/typicode/typicode-routing.module';
+import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/comunicacion-padre', pathMatch: 'full' },
@@ -16,7 +14,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     ComunicacionPadreRoutingModule,
-    GitHubUserRoutingModule,
+    TypicodeRoutingModule,
   ],
   exports: [RouterModule],
 })

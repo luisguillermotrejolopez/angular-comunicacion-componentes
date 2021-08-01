@@ -1,0 +1,13 @@
+.app-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  div {
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
