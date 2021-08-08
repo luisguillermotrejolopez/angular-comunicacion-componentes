@@ -31,8 +31,8 @@ export class UserComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //this.getUsers();
-    //this.getUsersSendHeaders();
-    this.getUsersOperators();
+    this.getUsersSendHeaders();
+    //this.getUsersOperators();
 
     this.createPromise();
     this.createObservableUser();
@@ -76,16 +76,10 @@ export class UserComponent implements OnInit, OnDestroy {
       .getUsersSendHeaders()
       .pipe(
         map((data: any) => data.filter((user) => user.name === 'Ervin Howell'))
-        //map((data: any) => data.first((user) => user.name === 'Ervin Howell'))
-        /*filter((user: any) => user.name === 'Ervin Howell'),
-        toArray()*/
       )
       .subscribe(
         (response: any) => {
           this.users = response;
-          /*const source = from(this.users);
-          //filter out people with age under 30
-          const example = source.pipe(filter(person => person.name == '30'));*/
         },
         (error) => alert(`Ha sucedido un error: ${error}`)
       );
@@ -131,7 +125,7 @@ export class UserComponent implements OnInit, OnDestroy {
   private createSubjectUser(): void {
     let subjectUser: Subject<string> = new Subject<string>();
 
-    //subjectUser.next('De Bruyne');//No se toma, ya que solo emite los valores a futuro
+    subjectUser.next('De Bruyne'); //No se emite toma, ya que solo emite los valores luego de la suscripción
 
     this.suscriptionSubject1 = subjectUser.subscribe((response) =>
       console.log(
@@ -153,7 +147,7 @@ export class UserComponent implements OnInit, OnDestroy {
     let behaviorSubjectUser: BehaviorSubject<string> =
       new BehaviorSubject<string>('Benkenbauer');
 
-    //behaviorSubjectUser.next('Maradona'); //Reemplaza a Benkenbauer
+    behaviorSubjectUser.next('Maradona'); //"Reemplaza" a Benkenbauer, ya que solo emite el último antes de la suscripción
 
     this.suscriptionBehaviorSubject1 = behaviorSubjectUser.subscribe(
       (response) =>

@@ -1,0 +1,14 @@
+<div>
+  <div>Nombre: {{ nombre | uppercase }}</div>
+  <div>Fecha Nacimiento: {{ fechaNacimiento | date: "dd/MM/yyyy" }}</div>
+  <div>Saldo Cuenta: {{ saldoCuenta | pipePersonalizado }}</div>
+  <div>
+    Foto:
+    <img
+      appDirectivePersonalizada
+      class="image"
+      src="https://avatars.githubusercontent.com/u/1?v=4"
+      alt=""
+    />
+  </div>
+</div>
