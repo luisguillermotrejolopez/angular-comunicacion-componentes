@@ -24,4 +24,10 @@ export class TypicodeService {
 
     return this._httpClient.get<Array<any>>(this.api, { headers });
   }
+
+  public checkUserName(username: string): Observable<any> {
+    return this._httpClient.get(
+      `https://fortniteapi.io/v1/lookup?username=${username}`
+    );
+  }
 }

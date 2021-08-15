@@ -2,16 +2,43 @@
   <div class="col-4 offset-4 p-4 animate__animated animate__fadeInDown">
     <form [formGroup]="formLogin" (submit)="send()" class="">
       <div class="mb-3">
+        <label class="form-label">Nombre de Usuario</label>
+        <input type="text" class="form-control" formControlName="username" />
+        <div
+          *ngIf="
+            formLogin.controls.username.errors &&
+            formLogin.controls.username.touched
+          "
+          class="control-error"
+        >
+          <div *ngIf="formLogin.controls.username.errors.required">
+            Campo Requerido
+          </div>
+          <!--<div
+            *ngIf="
+              formLogin.controls.username.errors.UserValidator.verificateSpaces
+            "
+          >
+            No use espacios
+          </div>-->
+        </div>
+      </div>
+      <div class="mb-3">
         <label class="form-label">Correo Electrónico</label>
         <input type="text" class="form-control" formControlName="email" />
       </div>
       <div class="mb-3">
         <label class="form-label">Contraseña</label>
-        <input
+        <!--<input
           type="password"
           class="form-control shadow"
           formControlName="password"
           [controlErrorsTpl]="messagePasswordError"
+        />-->
+        <input
+          type="password"
+          class="form-control shadow"
+          formControlName="password"
         />
         <!--<input
           type="password"
@@ -43,12 +70,29 @@
           class="form-control shadow"
           formControlName="youtube"
         />
-        <ng-container
+        <!--<ng-container
           *ngTemplateOutlet="
             messageYoutubeError;
             context: { error: formLogin.get('youtube').errors }
           "
-        ></ng-container>
+        ></ng-container>-->
+      </div>
+      <div class="mb-3" formArrayName="topics">
+        <ng-container *ngFor="let topic of topics.controls; let i = index">
+          <label class="form-label">Tema Canal:</label>
+          <input type="text" [formControlName]="i" />
+          <button
+            *ngIf="i != 0"
+            type="button"
+            (click)="removeTopic(i)"
+            class="btn-primary"
+          >
+            X
+          </button> </ng-container
+        ><br /><br />
+        <button type="button" (click)="addTopic()" class="btn btn-primary">
+          Agregar Tema
+        </button>
       </div>
       <div class="mb-3 d-flex">
         <div class="form-check">
@@ -88,9 +132,9 @@
   </div>
 </div>
 
-<ng-template let-error let-text="text" #messagePasswordError>
-  <!--  {{ error | json }} {{ text }}-->
-  <span class="control-error">Error:</span>
+<!--<ng-template let-error let-text="text" #messagePasswordError>-->
+<!--  {{ error | json }} {{ text }}-->
+<!--<span class="control-error">Error:</span>
   <div *ngIf="error?.minlength">
     <i
       >No cumples con los caracteres minimos que son ({{
@@ -98,14 +142,14 @@
       }}), ingresaste solo: {{ error?.minlength?.actualLength }}
     </i>
   </div>
-</ng-template>
+</ng-template>-->
 
 <!--<ng-template let-error let-text="text" #mensajeError>
   {{ error | json }} {{ text }}
 </ng-template>-->
 
-<ng-template #messageYoutubeError let-error="error">
+<!--<ng-template #messageYoutubeError let-error="error">
   <div class="control-error" *ngIf="error?.pattern?.requiredPattern">
     <span>No es una url correcta</span>
   </div>
-</ng-template>
+</ng-template>-->

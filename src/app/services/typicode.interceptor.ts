@@ -19,9 +19,7 @@ export class TypicodeInterceptor implements HttpInterceptor {
 
     request = request.clone({
       setHeaders: {
-        SeguridadToken: 'Aquí va el token dinámico',
-        SeguridadCustom1: 'Aquí va mi valor 1',
-        SeguridadCustom2: 'Aquí va mi valor 2',
+        Authorization: 'fe2d9bf9-57302120-25d39b29-04785101',
       },
     });
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 //import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ErrorTailorModule } from '@ngneat/error-tailor';
+//import { ErrorTailorModule } from '@ngneat/error-tailor';
 
 import { ReqresRoutingModule } from './reqres-routing.module';
 import { FormularioComponent } from './formulario/formulario.component';
@@ -13,7 +13,7 @@ import { FormularioComponent } from './formulario/formulario.component';
     CommonModule,
     /*HttpClientModule, */ ReqresRoutingModule,
     ReactiveFormsModule,
-    ErrorTailorModule.forRoot({
+    /*ErrorTailorModule.forRoot({
       errors: {
         useValue: {
           required: 'Campo requerido',
@@ -22,7 +22,7 @@ import { FormularioComponent } from './formulario/formulario.component';
           invalidAddress: (error) => `Address isn't valid`,
         },
       },
-    }),
+    }),*/
   ],
 })
 export class ReqresModule {}

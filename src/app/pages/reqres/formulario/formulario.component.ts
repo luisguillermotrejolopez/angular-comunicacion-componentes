@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { UserValidator } from '../../../shared/validators/user-validator';
+import { TypicodeService } from '../../../services/typicode.service';
+import { checkUserName } from '../../../shared/validators/async-validator';
 
 @Component({
   selector: 'app-formulario',
@@ -9,7 +12,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormularioComponent implements OnInit {
   public formLogin: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private _typicodeService: TypicodeService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -17,6 +23,14 @@ export class FormularioComponent implements OnInit {
 
   private initializeForm(): void {
     this.formLogin = this.formBuilder.group({
+      username: [
+        '',
+        {
+          valitors: [Validators.required, UserValidator.verificateSpaces],
+          asyncValidators: [checkUserName(this._typicodeService)],
+          updateOn: 'blur', //change
+        },
+      ],
       email: ['', [Validators.required, Validators.email]],
       youtube: [
         '',
@@ -31,9 +45,32 @@ export class FormularioComponent implements OnInit {
       color: [''],
       password: ['', [Validators.required, Validators.minLength(6)]],
       terms: ['', [Validators.required, Validators.requiredTrue]],
+      topics: this.formBuilder.array([
+        this.formBuilder.control('', [
+          Validators.required,
+          Validators.minLength(5),
+        ]),
+      ]),
     });
 
     // this.loadAPI();
+  }
+
+  get topics(): FormArray {
+    return this.formLogin.get('topics') as FormArray;
+  }
+
+  public addTopic(): void {
+    this.topics.push(
+      this.formBuilder.control('', [
+        Validators.required,
+        Validators.minLength(5),
+      ])
+    );
+  }
+
+  public removeTopic(index: number): void {
+    this.topics.removeAt(index);
   }
 
   public changeType(): void {
