@@ -21,11 +21,9 @@ export class UserComponent implements OnInit, OnDestroy {
   public users: Array<User> = new Array();
   private suscription: Subscription = new Subscription();
 
-  private suscriptionObservable: Subscription = new Subscription();
-  private suscriptionSubject1: Subscription = new Subscription();
-  private suscriptionSubject2: Subscription = new Subscription();
   private suscriptionBehaviorSubject1: Subscription = new Subscription();
   private suscriptionBehaviorSubject2: Subscription = new Subscription();
+  private listSuscriptions: Array<Subscription> = [];
 
   constructor(private _typicodeService: TypicodeService) {}
 
@@ -46,9 +44,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   private clearSuscripctions(): void {
     this.suscription.unsubscribe();
-    this.suscriptionObservable.unsubscribe();
-    this.suscriptionSubject1.unsubscribe();
-    this.suscriptionSubject2.unsubscribe();
+    this.listSuscriptions.forEach((subscription) => subscription.unsubscribe());
     this.suscriptionBehaviorSubject1.unsubscribe();
     this.suscriptionBehaviorSubject2.unsubscribe();
   }
@@ -119,7 +115,8 @@ export class UserComponent implements OnInit, OnDestroy {
       complete: () => console.log('Completado'),
     };
 
-    this.suscriptionObservable = $observableUser.subscribe($observerUser);
+    //this.suscriptionObservable = $observableUser.subscribe($observerUser);
+    this.listSuscriptions.push($observableUser.subscribe($observerUser));
   }
 
   private createSubjectUser(): void {
@@ -127,15 +124,19 @@ export class UserComponent implements OnInit, OnDestroy {
 
     subjectUser.next('De Bruyne'); //No se emite toma, ya que solo emite los valores luego de la suscripción
 
-    this.suscriptionSubject1 = subjectUser.subscribe((response) =>
-      console.log(
-        '---Esta es la respuesta del SubjectUser, Suscripción 1: ' + response
+    this.listSuscriptions.push(
+      subjectUser.subscribe((response) =>
+        console.log(
+          '---Esta es la respuesta del SubjectUser, Suscripción 1: ' + response
+        )
       )
     );
 
-    this.suscriptionSubject2 = subjectUser.subscribe((response) =>
-      console.log(
-        '---Esta es la respuesta del SubjectUser, Suscripción 2: ' + response
+    this.listSuscriptions.push(
+      subjectUser.subscribe((response) =>
+        console.log(
+          '---Esta es la respuesta del SubjectUser, Suscripción 2: ' + response
+        )
       )
     );
 
