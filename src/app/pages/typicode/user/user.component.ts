@@ -11,6 +11,7 @@ import { filter, map, toArray, first } from 'rxjs/operators';
 
 import { TypicodeService } from '../../../services/typicode.service';
 import { User } from '../../../models/user.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -25,11 +26,12 @@ export class UserComponent implements OnInit, OnDestroy {
   private suscriptionBehaviorSubject2: Subscription = new Subscription();
   private listSuscriptions: Array<Subscription> = [];
 
-  constructor(private _typicodeService: TypicodeService) {}
+  constructor(private _typicodeService: TypicodeService, private _activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     //this.getUsers();
-    this.getUsersSendHeaders();
+    //this.getUsersSendHeaders();
+    this.getUserResolve();
     //this.getUsersOperators();
 
     this.createPromise();
@@ -56,6 +58,12 @@ export class UserComponent implements OnInit, OnDestroy {
       },
       (error) => alert(`Ha sucedido un error: ${error}`)
     );
+  }
+
+  private getUserResolve(): void {
+    this._activatedRoute.data.subscribe((data: { users: any[] }) => {
+      this.users = data.users;
+    });
   }
 
   private getUsersSendHeaders(): void {

@@ -1,4 +1,3 @@
-import { SimpleChanges } from '@angular/core';
 import {
   Component,
   Input,
@@ -6,8 +5,12 @@ import {
   EventEmitter,
   OnInit,
   OnChanges,
-  SimpleChange,
+  SimpleChanges,
+  ContentChild,
+  ContentChildren,
+  QueryList,
 } from '@angular/core';
+import { ProyectadoComponent } from '../../../pages/comunicacion-padre/proyectado/proyectado.component';
 
 @Component({
   selector: 'app-hijo',
@@ -21,20 +24,51 @@ export class HijoComponent implements OnInit, OnChanges {
   @Output('valorDesdeHijo') public valorSalida: EventEmitter<number> =
     new EventEmitter();
 
+  @ContentChild(ProyectadoComponent) //ContentChildren
+  private contentHijoComponente: ProyectadoComponent;
+
+  @ContentChildren(ProyectadoComponent)
+  private contentsHijoComponente: QueryList<ProyectadoComponent>;
+
   constructor() {}
 
   ngOnChanges(simpleChange: SimpleChanges) {
-    console.log('Componente Hijo - Ejecutando ngOnChanges');
-    console.log(simpleChange);
+    /*console.log('Componente Hijo - Ejecutando ngOnChanges');
+    console.log(simpleChange);*/
   }
 
   ngOnInit(): void {
     //console.log('Componente Hijo - Ejecutando ngOnInit');
     this.btnClass = `btn ${this.btnClass}`;
+    console.log(
+      'Componente Hijo - Ejecutando ngOnInit: ' + this.contentHijoComponente
+    );
   }
 
   ngDoCheck() {
-    console.log('Componente Hijo - Ejecutando ngDoCheck');
+    //console.log('Componente Hijo - Ejecutando ngDoCheck');
+  }
+
+  ngAfterContentInit() {
+    /*console.log(
+      'Componente Hijo - Ejecutando ngAfterContentInit: ' +
+        this.contentHijoComponente
+    );*/
+    /*console.log(
+      'Componente Hijo - Ejecutando ngAfterContentInit: ' +
+        this.contentsHijoComponente
+    );*/
+  }
+
+  ngAfterContentChecked() {
+    /*console.log(
+      'Componente Hijo - Ejecutando ngAfterContentChecked: ' +
+        this.contentHijoComponente
+    );*/
+    /*console.log(
+      'Componente Hijo - Ejecutando ngAfterContentChecked: ' +
+        this.contentsHijoComponente
+    );*/
   }
 
   public cambiarValor(valor: number): number {

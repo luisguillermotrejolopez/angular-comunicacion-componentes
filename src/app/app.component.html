@@ -1,5 +1,14 @@
 <div class="app-main">
   <div>
+    <a routerLink="/login" *ngIf="!usuarioLogueado">Iniciar Sesión</a>
+    <a (click)="logout()" style="cursor: pointer" *ngIf="usuarioLogueado"
+      >Cerrar Sesión</a
+    >
+  </div>
+  <div>
+    <a routerLink="/contacto">Contactar Admin</a>
+  </div>
+  <div>
     <a routerLink="/comunicacion-padre">Comunicación Padre</a>
   </div>
   <div>
@@ -9,7 +18,10 @@
     <a routerLink="/mostrar-datos">Pipe / Directiva</a>
   </div>
   <div>
-    <a routerLink="/formulario">Formulario</a>
+    <a routerLink="/typecodeuser/formulario">Formulario</a>
+  </div>
+  <div>
+    <a routerLink="/typecodeuser/usuarios-github">GitHub Usuarios</a>
   </div>
 </div>
 <router-outlet></router-outlet>

@@ -1,3 +1,4 @@
+import { ViewContainerRef } from '@angular/core';
 import {
   Directive,
   ElementRef,
@@ -11,11 +12,24 @@ import {
 })
 export class DirectivePersonalizadaDirective implements OnInit {
   @Input() urlCustom: string;
-  constructor(private elementRef: ElementRef) {}
+  constructor(
+    private elementRef: ElementRef,
+    public viewContainerRef: ViewContainerRef
+  ) {}
 
   ngOnInit() {
     let prueba = this.elementRef.nativeElement;
     //console.log(prueba);
+    console.log('Directiva Personalizada - Ejecutando ngOnInit');
+    setInterval(() => {
+      console.log(
+        'Imprimiendo valores para probar DoCheck - Directiva Personalizada'
+      );
+    }, 3000);
+  }
+
+  ngDoCheck() {
+    console.log('Directiva Personalizada - Ejecutando ngDoCheck');
   }
 
   @HostListener('error')

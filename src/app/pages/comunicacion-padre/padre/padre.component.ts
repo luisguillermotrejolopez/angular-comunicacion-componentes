@@ -24,13 +24,13 @@ export class PadreComponent implements OnInit, OnChanges, DoCheck {
 
   ngOnInit(): void {
     //console.log('Componente Padre - Ejecutando ngOnInit');
-    setInterval(() => {
+    /*setInterval(() => {
       console.log('Imprimiendo valores para probar DoCheck');
-    }, 3000);
+    }, 3000);*/
   }
 
   ngDoCheck() {
-    console.log('Componente Padre - Ejecutando ngDoCheck');
+    //console.log('Componente Padre - Ejecutando ngDoCheck');
   }
 
   get getProgreso1(): string {

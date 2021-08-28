@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { ComunicacionPadreModule } from './pages/comunicacion-padre/comunicacion-padre.module';
 import { TypicodeModule } from './pages/typicode/typicode.module';
 import { PipeDirectiveModule } from './pages/pipe-directive/pipe-directive.module';
-import { ReqresModule } from './pages/reqres/reqres.module';
 import { TypicodeInterceptor } from './services/typicode.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,16 +19,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ComunicacionPadreModule,
     TypicodeModule,
     PipeDirectiveModule,
-    ReqresModule,
     BrowserAnimationsModule,
   ],
-  providers: [
+  /*providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TypicodeInterceptor,
       multi: true,
     },
-  ],
+  ],*/
   bootstrap: [AppComponent],
 })
 export class AppModule {}

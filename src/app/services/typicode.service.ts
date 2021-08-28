@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.interface';
+import { UserGithub } from '../models/user-github';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,9 @@ export class TypicodeService {
     return this._httpClient.get(
       `https://fortniteapi.io/v1/lookup?username=${username}`
     );
+  }
+
+  public getUsersGitHub(): Observable<Array<UserGithub>> {
+    return this._httpClient.get<UserGithub[]>('https://api.github.com/users');
   }
 }

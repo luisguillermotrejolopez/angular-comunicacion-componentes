@@ -5,9 +5,10 @@ import { ComunicacionPadreRoutingModule } from './comunicacion-padre-routing.mod
 import { PadreComponent } from './padre/padre.component';
 
 import { ComunicacionHijoModule } from '../../components/comunicacion-hijo/comunicacion-hijo.module';
+import { ProyectadoComponent } from './proyectado/proyectado.component';
 
 @NgModule({
-  declarations: [PadreComponent],
+  declarations: [PadreComponent, ProyectadoComponent],
   imports: [
     CommonModule,
     ComunicacionPadreRoutingModule,
