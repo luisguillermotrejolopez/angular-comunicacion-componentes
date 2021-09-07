@@ -2,6 +2,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { acumuladorReducer } from './shared/redux/reducers/acumulador.reducer';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -20,6 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TypicodeModule,
     PipeDirectiveModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({ acumulador: acumuladorReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: false, // Restrict extension to log-only mode
+    }),
   ],
   /*providers: [
     {

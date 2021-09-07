@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GitHubUsersComponent } from './git-hub-users.component';
+import { PadreReduxComponent } from './padre-redux.component';
 
-describe('GitHubUsersComponent', () => {
-  let component: GitHubUsersComponent;
-  let fixture: ComponentFixture<GitHubUsersComponent>;
+describe('PadreReduxComponent', () => {
+  let component: PadreReduxComponent;
+  let fixture: ComponentFixture<PadreReduxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GitHubUsersComponent ]
+      declarations: [ PadreReduxComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GitHubUsersComponent);
+    fixture = TestBed.createComponent(PadreReduxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

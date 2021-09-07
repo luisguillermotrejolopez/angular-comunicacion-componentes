@@ -1,0 +1,55 @@
+<div>
+  Acumulador: {{ acumulador }}
+</div>
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Barra de Progreso</h4>
+          <div class="progress m-t-20">
+            <div
+              class="progress-bar bg-primary progress-bar-striped active"
+              style="height: 5px"
+              [style.width]="getProgreso1"
+              role="progressbar"
+            ></div>
+          </div>
+          <div class="progress m-t-20">
+            <div
+              class="progress-bar bg-info progress-bar-striped active"
+              style="height: 5px"
+              [style.width]="getProgreso2"
+              role="progressbar"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <app-hijo-redux
+            (valorDesdeHijo)="progreso1 = $event"
+            [valorDesdePadre]="progreso1"
+          >
+          </app-hijo-redux>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <app-hijo-redux
+            (valorDesdeHijo)="progreso2 = $event"
+            [valorDesdePadre]="progreso2"
+            [btnClass]="'btn-info'"
+          >
+          </app-hijo-redux>
+        </div>
+      </div>
+    </div>
+  </div>
+  
