@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { CanDeactivateGuard } from '../../shared/guards/can-deactivate.guard';
 
-const routes: Routes = [
+/*const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
@@ -16,6 +16,13 @@ const routes: Routes = [
     canDeactivate: [CanDeactivateGuard]
 
   },
+];*/
+
+const routes: Routes = [
+  {
+    path: 'lazy-load',
+    loadChildren: () => import('./child-routes.module').then((m) => m.ChildRoutesModule)
+  }
 ];
 
 @NgModule({

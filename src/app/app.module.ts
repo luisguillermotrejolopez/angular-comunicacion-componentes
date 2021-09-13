@@ -30,13 +30,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       logOnly: false, // Restrict extension to log-only mode
     }),
   ],
-  /*providers: [
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TypicodeInterceptor,
       multi: true,
     },
-  ],*/
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
